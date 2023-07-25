@@ -14,17 +14,16 @@ def main ( argc: int, argv: str ):
 
 
     texto = argv[1];
-    argv = ' '.join(argv[1:])
 
-    if op.option_flag(argv, "-h"):
+    if op.option_flag("-h"):
         print("usage: hill.py TEXTO [-e/-d] [-k]")
         print("usage: -e \t encriptar")
         print("usage: -d \t desencriptar")
         print("usage: -k \t llave")
         exit(0)
 
-    if op.option_flag(argv, "-e"):
-        clave     = op.option_arg_val(argv, "-k")
+    if op.option_flag("-e"):
+        clave     = op.option_arg_val("-k")
 
         if clave == op.NO_VALUE:
             clave = generar_clave( DEFAULT_DIMENSION )
@@ -33,8 +32,8 @@ def main ( argc: int, argv: str ):
         dimension = int( len(clave)**(0.5) )
         print( f"'{cifrar( texto, clave, int(dimension) ) }'" )
 
-    elif op.option_flag(argv, "-d"):
-        clave = op.option_arg_val(argv, "-k")
+    elif op.option_flag("-d"):
+        clave = op.option_arg_val("-k")
         if clave == op.NO_VALUE:
             print("ERROR: key parameter not provided")
             exit(1)

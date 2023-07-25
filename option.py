@@ -1,9 +1,11 @@
 
+from sys import argv
 import re
 
+ARGV = " ".join( argv[1:] )
 NO_VALUE = ""
 
-def option_arg_val ( argv: str, option: str ) -> str:
+def option_arg_val ( option: str, argv: str = ARGV ) -> str:
     i0 = argv.find(option)
     if i0 < 0:
         return NO_VALUE
@@ -17,6 +19,6 @@ def option_arg_val ( argv: str, option: str ) -> str:
 
     return argv[ i0 : iF+1 ].strip()
 
-def option_flag( argv:str, option: str ) -> bool:
+def option_flag( option: str, argv: str = ARGV ) -> bool:
     return False if argv.find(option) == -1 else True
 
