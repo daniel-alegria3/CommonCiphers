@@ -60,12 +60,8 @@ for num, char in enumerate( alfabeto ):
 ############################## HELPER MODULES ##################################
 DEFAULT_DIMENSION = 3
 
-def mcd(a, b):
-    while b != 0 :
-        a, b = b, a % b
-    return a
-
 def generar_clave ( dimension: int ) -> str:
+    """ ADVERTENCIA: este modulo no puede generar llaves validas """
     clave = np.empty( (dimension, dimension) )
 
     for i in range(dimension):
@@ -115,6 +111,11 @@ def array_to_str ( arr: np.array ) -> str:
             output += num_to_char[ round(num) ]
 
     return output
+
+def mcd(a, b):
+    while b != 0 :
+        a, b = b, a % b
+    return a
 
 def find_mod_inv (num, mod):
     for x in range(1,mod):

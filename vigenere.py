@@ -15,11 +15,10 @@ def main ( argc: int, argv: str ):
     exit(0)
 
 
-############################## MODULES #########################################
-
+################################################################################
 alfabeto = [
-    " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
-    "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", #"ñ",
+    "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", #" ",
 ]
 
 char_to_num = dict();
@@ -28,6 +27,7 @@ for num, char in enumerate( alfabeto ):
     char_to_num[char] = num;
     num_to_char[num] = char;
 
+############################## MODULES #########################################
 
 def cifrar ( texto: str, clave: str ) -> str:
     output = ""
@@ -38,8 +38,9 @@ def cifrar ( texto: str, clave: str ) -> str:
         if i == len(clave):
             i = 0
 
-        num = char_to_num[ ch ] + char_to_num[ clave[i] ]
-        output += num_to_char[ num % len(alfabeto) ]
+        c = clave[i]
+        enc = num_to_char[ (char_to_num[ch] + char_to_num[c]) % len(alfabeto)  ]
+        output += enc
 
         i += 1
 
@@ -55,12 +56,14 @@ def decifrar ( texto: str, clave: str ) -> str:
         if i == len(clave):
             i = 0
 
-        num = char_to_num[ ch ] - char_to_num[ clave[i] ]
-        output += num_to_char[ num % len(alfabeto) ]
+        c = clave[i]
+        enc = num_to_char[ (char_to_num[ch] - char_to_num[c]) % len(alfabeto)  ]
+        output += enc
 
         i += 1
 
     return output
+
 
 ################################################################################
 
