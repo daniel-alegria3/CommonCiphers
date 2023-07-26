@@ -7,7 +7,7 @@ def main ( argc: int, argv: str ):
         print("usage: virgenere.py [-e/-d] 'text' 'key'")
         exit(1)
 
-    ## TODO: implement error checking for argv[3] (must be a alphabetic string)
+    ## TODO: implement error checking for argv[3] (must be a digits string)
     if argv[1] == "-e":
         print( cifrar( argv[2], argv[3] ) )
     elif argv[1] == "-d":
@@ -18,7 +18,7 @@ def main ( argc: int, argv: str ):
 
 ################################################################################
 alfabeto = [
-    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", #"ñ",
+    " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", #"ñ",
     "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
 ]
 
@@ -27,6 +27,13 @@ num_to_char = dict();
 for num, char in enumerate( alfabeto ):
     char_to_num[char] = num;
     num_to_char[num] = char;
+
+
+# key_list = [ "c", "d", "f", "h", "l", "n", "r", "t", "x", "c" ]
+key_list = [ "b", "c", "e", "g", "k", "n", "r", "t", "x", "c" ]
+gronsfeld = list()
+for key in key_list:
+    gronsfeld.append(key)
 
 ############################## MODULES #########################################
 
@@ -39,7 +46,7 @@ def cifrar ( texto: str, clave: str ) -> str:
         if i == len(clave):
             i = 0
 
-        c = clave[i]
+        c = gronsfeld[ int(clave[i]) ]
         enc = num_to_char[ (char_to_num[ch] + char_to_num[c]) % len(alfabeto)  ]
         output += enc
 
@@ -57,7 +64,7 @@ def decifrar ( texto: str, clave: str ) -> str:
         if i == len(clave):
             i = 0
 
-        c = clave[i]
+        c = gronsfeld[ int(clave[i]) ]
         enc = num_to_char[ (char_to_num[ch] - char_to_num[c]) % len(alfabeto)  ]
         output += enc
 
