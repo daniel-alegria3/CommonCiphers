@@ -4,7 +4,7 @@ from sys import argv
 def main ( argc: int, argv: str ):
     if argc < 4:
         print("ERROR: too few args")
-        print("usage: virgenere.py [-e/-d] 'text' 'key'")
+        print("usage: cript.py [-e/-d] 'text' 'key'")
         exit(1)
 
     if argv[1] == "-e":
